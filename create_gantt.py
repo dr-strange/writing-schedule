@@ -139,7 +139,7 @@ print '--'
 
 print 'Total Duration: ' + str(add_bdays(final_revision.start, final_revision.duration) - start_date)
 
-book.make_svg_for_tasks(filename='test_full.svg',
+book.make_svg_for_tasks(filename='writing_schedule_hgs.svg',
                      today=datetime.date(2016, 7, 18),
                      start=start_date,
                      end=add_bdays(final_revision.start, final_revision.duration + week))
