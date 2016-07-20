@@ -30,19 +30,21 @@ week = 5
 # ADJUSTABLE PARAMETERS
 ################################
 start_date = datetime.date(2016, 9, 1)
-pages_per_week = float(10)
+pages_per_week = float(7)
 final_review_length = 4
 
 writing_durations = {1: [float(25) / pages_per_week, 1, 1],
-                     2: [float(30) / pages_per_week, 1, 1],
-                     3: [float(25) / pages_per_week, 1, 1],
-                     4: [float(40) / pages_per_week, 2, 2],
-                     5: [float(50) / pages_per_week, 2, 2],
-                     6: [float(50) / pages_per_week, 2, 2],
-                     7: [float(40) / pages_per_week, 2, 2],
-                     8: [float(60) / pages_per_week, 2, 2],
-                     9: [float(40) / pages_per_week, 2, 2],
-                     10:[float(10) / pages_per_week, 1, 1]}
+                     2: [float(20) / pages_per_week, 1, 1],
+                     3: [float(30) / pages_per_week, 1, 1],
+                     4: [float(30) / pages_per_week, 2, 1],
+                     5: [float(40) / pages_per_week, 3, 2],
+                     6: [float(40) / pages_per_week, 3, 2],
+                     7: [float(30) / pages_per_week, 2, 1],
+                     8: [float(30) / pages_per_week, 2, 1],
+                     9: [float(30) / pages_per_week, 2, 1],
+                     10:[float(30) / pages_per_week, 1, 1],
+                     11:[float(20) / pages_per_week, 1, 1],
+                     12:[float(10) / pages_per_week, 1, 1]}
 
 
 current_date = start_date
@@ -52,8 +54,11 @@ milestones = []
 chapters = []
 reviews = []
 revisions = []
+page_count = 0
 
 for current_week, duration in writing_durations.iteritems():
+    page_count += duration[0] * pages_per_week
+
     chapter = gantt.Task(name = 'Chapter ' + str(current_week) + ': Writing',
                             start = current_date,
                             duration = duration[0]*week,
@@ -137,6 +142,7 @@ print '\tRevision Duration (Weeks): ' + str(final_revision.duration / week)
 print '\tCompletion: ' + str(add_bdays(final_revision.start, final_revision.duration))
 print '--'
 
+print 'Total Page Count: ' + str(page_count)
 print 'Total Duration: ' + str(add_bdays(final_revision.start, final_revision.duration) - start_date)
 
 book.make_svg_for_tasks(filename='writing_schedule_hgs.svg',
