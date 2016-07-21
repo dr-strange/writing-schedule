@@ -30,21 +30,22 @@ week = 5
 # ADJUSTABLE PARAMETERS
 ################################
 start_date = datetime.date(2016, 9, 1)
-pages_per_week = float(7)
+words_per_page = 330
+pages_per_week = float(10)
 final_review_length = 4
 
-writing_durations = {1: [float(25) / pages_per_week, 1, 1],
-                     2: [float(20) / pages_per_week, 1, 1],
-                     3: [float(30) / pages_per_week, 1, 1],
-                     4: [float(30) / pages_per_week, 2, 1],
-                     5: [float(40) / pages_per_week, 3, 2],
-                     6: [float(40) / pages_per_week, 3, 2],
-                     7: [float(30) / pages_per_week, 2, 1],
-                     8: [float(30) / pages_per_week, 2, 1],
-                     9: [float(30) / pages_per_week, 2, 1],
-                     10:[float(30) / pages_per_week, 1, 1],
-                     11:[float(20) / pages_per_week, 1, 1],
-                     12:[float(10) / pages_per_week, 1, 1]}
+writing_durations = {1: [float(25) / pages_per_week, 1, 1],     # Introduction
+                     2: [float(20) / pages_per_week, 1, 1],     # Azure ML & Python
+                     3: [float(30) / pages_per_week, 1, 1],     # Maths
+                     4: [float(30) / pages_per_week, 2, 1],     # Data 
+                     5: [float(40) / pages_per_week, 3, 2],     # Unsupervised learning
+                     6: [float(30) / pages_per_week, 3, 2],     # Simple models
+                     7: [float(30) / pages_per_week, 2, 1],     # Probabilistic models
+                     8: [float(40) / pages_per_week, 2, 1],     # Support vector machines
+                     9: [float(30) / pages_per_week, 2, 1],     # Tree based learning
+                     10:[float(50) / pages_per_week, 2, 1],     # Neural networks
+                     11:[float(20) / pages_per_week, 1, 1],     # Putting it all together
+                     12:[float(10) / pages_per_week, 1, 1]}     # Where next?
 
 
 current_date = start_date
@@ -142,8 +143,9 @@ print '\tRevision Duration (Weeks): ' + str(final_revision.duration / week)
 print '\tCompletion: ' + str(add_bdays(final_revision.start, final_revision.duration))
 print '--'
 
-print 'Total Page Count: ' + str(page_count)
+print 'Total Page Count: ' + str(page_count) + ' (Approx. ' + str(page_count * words_per_page) + ' words)'
 print 'Total Duration: ' + str(add_bdays(final_revision.start, final_revision.duration) - start_date)
+print '\tAssuming ' + str(pages_per_week) + ' pages per week (' + str(pages_per_week*words_per_page) + ' words per week)'
 
 book.make_svg_for_tasks(filename='writing_schedule_hgs.svg',
                      today=datetime.date(2016, 7, 18),
